@@ -5,6 +5,7 @@ const {
   cloudinaryUploadImg,
   cloudinaryDeleteImg,
 } = require("../utils/cloudinary");
+
 const uploadImages = asyncHandler(async (req, res) => {
   try {
     const uploader = (path) => cloudinaryUploadImg(path, "images");
@@ -22,9 +23,11 @@ const uploadImages = asyncHandler(async (req, res) => {
     });
     res.json(images);
   } catch (error) {
+    console.log(error);
     throw new Error(error);
   }
 });
+
 const deleteImages = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {

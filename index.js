@@ -18,6 +18,7 @@ const uploadRouter = require("./routes/uploadRoute");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const cors = require("cors");
+const { default: mongoose } = require("mongoose");
 
 dbConnect();
 app.use(morgan("dev"));

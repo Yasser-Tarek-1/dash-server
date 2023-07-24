@@ -4,7 +4,6 @@ const Cart = require("../models/cartModel");
 const Coupon = require("../models/couponModel");
 const Order = require("../models/orderModel");
 const uniqid = require("uniqid");
-
 const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
 const validateMongoDbId = require("../utils/validateMongodbId");
@@ -490,6 +489,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
 const getOrderByUserId = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -498,11 +498,13 @@ const getOrderByUserId = asyncHandler(async (req, res) => {
       .populate("products.product")
       .populate("orderby")
       .exec();
-    res.json(userorders);
+
+    res.json(userorders || {});
   } catch (error) {
     throw new Error(error);
   }
 });
+
 const updateOrderStatus = asyncHandler(async (req, res) => {
   const { status } = req.body;
   const { id } = req.params;

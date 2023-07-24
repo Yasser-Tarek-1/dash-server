@@ -27,6 +27,7 @@ const updateProduct = asyncHandler(async (req, res) => {
       new: true,
     });
     res.json(updateProduct);
+    console.log(updateProduct);
   } catch (error) {
     throw new Error(error);
   }
